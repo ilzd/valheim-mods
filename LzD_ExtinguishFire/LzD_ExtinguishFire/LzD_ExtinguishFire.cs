@@ -2,7 +2,6 @@
 using BepInEx.Configuration;
 using HarmonyLib;
 using UnityEngine;
-using System.Collections;
 
 namespace LzD_ExtinguishFire
 {
@@ -10,18 +9,22 @@ namespace LzD_ExtinguishFire
     [BepInProcess("valheim.exe")]
     public class LzD_ExtinguishFire : BaseUnityPlugin
     {
-        private readonly Harmony harmony = new Harmony("lzd.stationscustomranges");
+        private readonly Harmony harmony = new Harmony("lzd_extinguishfire");
 
         private static ConfigEntry<bool> modEnabled;
+        private static ConfigEntry<bool> logEnabled;
+        private static ConfigEntry<KeyboardShortcut> extinguishKey;
 
         void Awake()
         {
-            modEnabled = Config.Bind<bool>("1 - General", "a. Enabled", true, "Enable or disable the mod completely (restart required)");
+            modEnabled = Config.Bind<bool>("1 - Global", "a. Enable mod", true, "Enable or disable the mod completely");
+            logEnabled = Config.Bind<bool>("1 - Global", "b. Enable logs", true, "Enable or disable logs completely");
+            extinguishKey = Config.Bind<KeyboardShortcut>("2 - Controls", "a. Extinguish Key", new KeyboardShortcut(KeyCode.LeftAlt), "Define the key that extinguishes fireplaces");
 
             if (!modEnabled.Value) return;
 
-            Debug.Log("Initialized config and debugging");
             harmony.PatchAll();
+            Log("lzd_extinguishfire mod initialized");
         }
 
         void OnDestroy()
@@ -29,12 +32,20 @@ namespace LzD_ExtinguishFire
             harmony.UnpatchSelf();
         }
 
+        static void Log(string msg)
+        {
+            if (!logEnabled.Value) return;
+            Debug.Log(msg);
+        }
+
         [HarmonyPatch(typeof(Fireplace), nameof(Fireplace.GetHoverText))]
         static class Fireplace_GetHoverText_Patch
         {
             static void Postfix(ref string __result)
             {
-                __result += $"\n[<color=yellow><b>LeftAlt</b></color>] Extinguish fire";
+                if (!modEnabled.Value) return;
+
+                __result += $"\n[<color=yellow><b>{extinguishKey.Value.MainKey}</b></color>] Extinguish fire";
             }
         }
 
@@ -43,22 +54,29 @@ namespace LzD_ExtinguishFire
         {
             static void Postfix(Player __instance)
             {
+                if (!modEnabled.Value) return;
+
                 Player player = __instance;
-                bool extractPressed = UnityInput.Current.GetKey(KeyCode.LeftAlt);
+                bool extinguishPressed = UnityInput.Current.GetKeyDown(extinguishKey.Value.MainKey);
 
                 Fireplace fireplace = player.GetHoverObject()?.GetComponentInParent<Fireplace>();
                 if (fireplace == null) return;
                 ZNetView zNetView = fireplace.GetComponent<ZNetView>();      
 
-                if (zNetView == null || !extractPressed) return;
+                if (zNetView == null || !extinguishPressed) return;
 
                 float fuelTotal = zNetView.GetZDO().GetFloat("fuel");
                 int fuelRemovable = (int) Mathf.Floor(fuelTotal);
                 GameObject fuelPrefab = ZNetScene.instance.GetPrefab(fireplace.m_fuelItem.name);
                 zNetView.GetZDO().Set("fuel", 0f);
 
-                if(fuelTotal > 0f) fireplace.m_fuelAddedEffects.Create(fireplace.transform.position, fireplace.transform.rotation);
+                if (fuelTotal > 0f)
+                {
+                    Log("Fire extinguished");
+                    fireplace.m_fuelAddedEffects.Create(fireplace.transform.position, fireplace.transform.rotation);
+                }
 
+                Log($"{fuelRemovable} fuel units recovered");
                 while (fuelRemovable > 0)
                 {
                     ItemDrop fuelPack = Instantiate(fuelPrefab, fireplace.transform.position + Vector3.up, Quaternion.identity).GetComponent<ItemDrop>();
