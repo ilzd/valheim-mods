@@ -3,28 +3,33 @@ using BepInEx.Configuration;
 using HarmonyLib;
 using UnityEngine;
 
+
 namespace LzD_ExtinguishFire
 {
-    [BepInPlugin("lzd_extinguishfire", "LzD Extinguish Fire", "0.0.0")]
+    [BepInPlugin(modID, modName, modVersion)]
     [BepInProcess("valheim.exe")]
     public class LzD_ExtinguishFire : BaseUnityPlugin
     {
-        private readonly Harmony harmony = new Harmony("lzd_extinguishfire");
+        public const string modID = "lzd_extinguishfire";
+        public const string modName = "LzD Extinguish Fire";
+        public const string modVersion = "1.0.0";
+
+        private readonly Harmony harmony = new Harmony(modID);
 
         private static ConfigEntry<bool> modEnabled;
         private static ConfigEntry<bool> logEnabled;
-        private static ConfigEntry<KeyboardShortcut> extinguishKey;
+        private static ConfigEntry<KeyboardShortcut> actionKey;
 
         void Awake()
         {
             modEnabled = Config.Bind<bool>("1 - Global", "a. Enable mod", true, "Enable or disable the mod completely");
             logEnabled = Config.Bind<bool>("1 - Global", "b. Enable logs", true, "Enable or disable logs completely");
-            extinguishKey = Config.Bind<KeyboardShortcut>("2 - Controls", "a. Extinguish Key", new KeyboardShortcut(KeyCode.LeftAlt), "Define the key that extinguishes fireplaces");
+            actionKey = Config.Bind<KeyboardShortcut>("2 - Controls", "a. Collect/Extinguish key", new KeyboardShortcut(KeyCode.LeftAlt), "Defines the key to collect fuel and extinguish fireplaces");
 
             if (!modEnabled.Value) return;
 
             harmony.PatchAll();
-            Log("lzd_extinguishfire mod initialized");
+            Log($"{modName} mod initialized");
         }
 
         void OnDestroy()
@@ -45,7 +50,7 @@ namespace LzD_ExtinguishFire
             {
                 if (!modEnabled.Value) return;
 
-                __result += $"\n[<color=yellow><b>{extinguishKey.Value.MainKey}</b></color>] Extinguish fire";
+                __result += $"\n[<color=yellow><b>{actionKey.Value.MainKey}</b></color>] Collect fuel / Extinguish fire";
             }
         }
 
@@ -57,26 +62,32 @@ namespace LzD_ExtinguishFire
                 if (!modEnabled.Value) return;
 
                 Player player = __instance;
-                bool extinguishPressed = UnityInput.Current.GetKeyDown(extinguishKey.Value.MainKey);
+                bool extinguishPressed = UnityInput.Current.GetKeyDown(actionKey.Value.MainKey);
+
+                if (!extinguishPressed) return;
 
                 Fireplace fireplace = player.GetHoverObject()?.GetComponentInParent<Fireplace>();
                 if (fireplace == null) return;
-                ZNetView zNetView = fireplace.GetComponent<ZNetView>();      
+                ZNetView zNetView = fireplace.GetComponent<ZNetView>();
 
-                if (zNetView == null || !extinguishPressed) return;
+                if (zNetView == null) return;
 
                 float fuelTotal = zNetView.GetZDO().GetFloat("fuel");
-                int fuelRemovable = (int) Mathf.Floor(fuelTotal);
-                GameObject fuelPrefab = ZNetScene.instance.GetPrefab(fireplace.m_fuelItem.name);
-                zNetView.GetZDO().Set("fuel", 0f);
+                if (fuelTotal <= 0f) return;
 
-                if (fuelTotal > 0f)
+                int fuelRemovable = (int)Mathf.Floor(fuelTotal);
+
+                if (fuelRemovable == 0)
                 {
                     Log("Fire extinguished");
+                    zNetView.GetZDO().Set("fuel", 0f);
                     fireplace.m_fuelAddedEffects.Create(fireplace.transform.position, fireplace.transform.rotation);
+                    return;
                 }
 
                 Log($"{fuelRemovable} fuel units recovered");
+                zNetView.GetZDO().Set("fuel", fuelTotal - fuelRemovable);
+                GameObject fuelPrefab = ZNetScene.instance.GetPrefab(fireplace.m_fuelItem.name);
                 while (fuelRemovable > 0)
                 {
                     ItemDrop fuelPack = Instantiate(fuelPrefab, fireplace.transform.position + Vector3.up, Quaternion.identity).GetComponent<ItemDrop>();
