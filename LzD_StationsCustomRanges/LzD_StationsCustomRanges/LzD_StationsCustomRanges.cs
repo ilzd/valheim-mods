@@ -16,37 +16,84 @@ namespace LzD_StationsCustomRanges
 
         private readonly Harmony harmony = new Harmony(modID);
 
+        //general settings
         private static ConfigEntry<bool> modEnabled;
-        private static ConfigEntry<bool> logEnabled;
-
+        private static ConfigEntry<bool> logsEnabled;
         private static ConfigEntry<bool> rangeEnabled;
-        private static ConfigEntry<float> workbenchRange;
-        private static ConfigEntry<float> forgeRange;
-        private static ConfigEntry<float> stonecutterRange;
-
         private static ConfigEntry<bool> rangeLvlEnabled;
+        private static ConfigEntry<bool> extMaxDistEnabled;
+
+        //global settings
+        private static ConfigEntry<bool> globalEnabled;
+        private static ConfigEntry<float> globalRange;
+        private static ConfigEntry<float> globalRangePerLevel;
+
+        //workbench settings
+        private static ConfigEntry<bool> workbenchEnabled;
+        private static ConfigEntry<float> workbenchRange;
         private static ConfigEntry<float> workbenchRangeLvl;
+
+        //forge settingsR
+        private static ConfigEntry<bool> forgeEnabled;
+        private static ConfigEntry<float> forgeRange;
         private static ConfigEntry<float> forgeRangeLvl;
 
-        private static ConfigEntry<bool> extMaxDistEnabled;
-        private static ConfigEntry<float> extMaxDistance;
+        //stonecutter settings
+        private static ConfigEntry<bool> stonecutterEnabled;
+        private static ConfigEntry<float> stonecutterRange;
+
+        //blackforge settings
+        private static ConfigEntry<bool> blackforgeEnabled;
+        private static ConfigEntry<float> blackforgeRange;
+        private static ConfigEntry<float> blackforgeRangeLvl;
+
+        //artisantable settings
+        private static ConfigEntry<bool> artisanEnabled;
+        private static ConfigEntry<float> artisanTableRange;
+
+        //galdrtable settings
+        private static ConfigEntry<bool> galdrEnabled;
+        private static ConfigEntry<float> galdrTableRange;
+        private static ConfigEntry<float> galdrTableRangeLvl;
+
+        //extension settings
+        private static ConfigEntry<float> extMaxDist;
 
         void Awake()
         {
-            modEnabled = Config.Bind<bool>("1 - Global", "a. Enable mod", true, "Enable or disable the mod completely");
-            logEnabled = Config.Bind<bool>("1 - Global", "b. Enable logs", true, "Enable or disable logs completely");
+            modEnabled = Config.Bind<bool>("1 - General", "a. Mod", true, "Enable or disable the mod completely");
+            logsEnabled = Config.Bind<bool>("1 - General", "b. Logs", false, "Enable or disable logs completely");
+            rangeEnabled = Config.Bind<bool>("1 - General", "c. Base range modifications", true, "Enable or disable base range customizations completely");
+            rangeLvlEnabled = Config.Bind<bool>("1 - General", "d. Range per level modifications", true, "Enable or disable range per level customizations completely");
 
-            rangeEnabled = Config.Bind<bool>("2 - Base Range", "a. Enabled", true, "Enable or disable base range customizations");
-            workbenchRange = Config.Bind<float>("2 - Base Range", "b. Workbench", 30f, "Workbench base range");
-            forgeRange = Config.Bind<float>("2 - Base Range", "c. Forge", 30f, "Forge base range");
-            stonecutterRange = Config.Bind<float>("2 - Base Range", "d. Stonecutter", 54f, "Stonecutter base range");
+            globalEnabled = Config.Bind<bool>("2 - Global", "a. Global settings", false, "Enable or disable settings that apply to all stations");
+            globalRange = Config.Bind<float>("2 - Global", "b. Global base range", 30f, "Base range to apply to all stations");
+            globalRangePerLevel = Config.Bind<float>("2 - Global", "c. Global range per level", 6f, "Range per level to apply to all stations");
 
-            rangeLvlEnabled = Config.Bind<bool>("3 - Range per level", "a. Enabled", true, "Enable or disable range per level customizations");
-            workbenchRangeLvl = Config.Bind<float>("3 - Range per level", "b. Workbench", 6f, "Workbench range per level");
-            forgeRangeLvl = Config.Bind<float>("3 - Range per level", "c. Forge", 4f, "Forge range per level");
+            workbenchEnabled = Config.Bind<bool>("3 - Workbench", "a. Modifications", true, "Enable or disable workbench modifications completely");
+            workbenchRange = Config.Bind<float>("3 - Workbench", "b. Base range", 30f, "Workbench base range");
+            workbenchRangeLvl = Config.Bind<float>("3 - Workbench", "c. Range per level", 6f, "Workbench range per level");
 
-            extMaxDistEnabled = Config.Bind<bool>("4 - Station extentions", "a. Enabled", true, "Enable or disable station extention maximum distance customizations");
-            extMaxDistance = Config.Bind<float>("4 - Station extentions", "b. MaxDistance", 15f, "Maximum distance for station extentions");
+            forgeEnabled = Config.Bind<bool>("4 - Forge", "a. Modifications", true, "Enable or disable forge modifications completely");
+            forgeRange = Config.Bind<float>("4 - Forge", "b. Base range", 30f, "Forge base range");
+            forgeRangeLvl = Config.Bind<float>("4 - Forge", "c. Range per level", 4f, "Forge range per level");
+
+            stonecutterEnabled = Config.Bind<bool>("5 - Stonecutter", "a. Modifications", true, "Enable or disable stonecutter modifications completely");
+            stonecutterRange = Config.Bind<float>("5 - Stonecutter", "b. Base range", 54f, "Stonecutter base range");
+
+            blackforgeEnabled = Config.Bind<bool>("6 - Blackforge", "a. Modifications", true, "Enable or disable blackforge modifications completely");
+            blackforgeRange = Config.Bind<float>("6 - Blackforge", "b. Base range", 40f, "Blackforge base range");
+            blackforgeRangeLvl = Config.Bind<float>("6 - Blackforge", "c. Range per level", 7f, "Blackforge range per level");
+
+            artisanEnabled = Config.Bind<bool>("7 - Artisan Table", "a. Modifications", true, "Enable or disable artisan table modifications completely");
+            artisanTableRange = Config.Bind<float>("7 - Artisan Table", "b. Base range", 54f, "Artisan table base range");
+
+            galdrEnabled = Config.Bind<bool>("8 - Galdr Table", "a. Modifications", true, "Enable or disable galdr table modifications completely");
+            galdrTableRange = Config.Bind<float>("8 - Galdr Table", "b. Base range", 40f, "Galdr table base range");
+            galdrTableRangeLvl = Config.Bind<float>("8 - Galdr Table", "c. Range per level", 7f, "Galdr table range per level");
+
+            extMaxDistEnabled = Config.Bind<bool>("9 - Upgrades build distance", "a. Modifications", true, "Enable or disable station upgrades maximum distance customizations completely");
+            extMaxDist = Config.Bind<float>("9 - Upgrades build distance", "b. Max Distance", 15f, "Maximum distance multiplier for station upgrades");
 
             if (!modEnabled.Value) return;
 
@@ -61,7 +108,7 @@ namespace LzD_StationsCustomRanges
 
         static void Log(string msg)
         {
-            if (!logEnabled.Value) return;
+            if (!logsEnabled.Value) return;
             Debug.Log(msg);
         }
 
@@ -70,23 +117,45 @@ namespace LzD_StationsCustomRanges
         {
             static void Postfix(List<CraftingStation> ___m_allStations)
             {
+                if (!modEnabled.Value) return;
+
                 foreach (CraftingStation station in ___m_allStations)
                 {
                     if (station.m_name == "$piece_workbench")
                     {
+                        if (!workbenchEnabled.Value) continue;
                         changeStationRange(station, workbenchRange.Value);
                         changeStationRangePerLevel(station, workbenchRangeLvl.Value);
                         continue;
                     }
                     else if (station.m_name == "$piece_forge")
                     {
+                        if (!forgeEnabled.Value) continue;
                         changeStationRange(station, forgeRange.Value);
                         changeStationRangePerLevel(station, forgeRangeLvl.Value);
                         continue;
                     }
                     else if (station.m_name == "$piece_stonecutter")
                     {
+                        if (!stonecutterEnabled.Value) continue;
                         changeStationRange(station, stonecutterRange.Value);
+                    }
+                    else if (station.m_name == "$piece_blackforge")
+                    {
+                        if (!blackforgeEnabled.Value) continue;
+                        changeStationRange(station, blackforgeRange.Value);
+                        changeStationRangePerLevel(station, blackforgeRangeLvl.Value);
+                    }
+                    else if (station.m_name == "$piece_artisanstation")
+                    {
+                        if (!artisanEnabled.Value) continue;
+                        changeStationRange(station, artisanTableRange.Value);
+                    }
+                    else if (station.m_name == "$piece_magetable")
+                    {
+                        if (!galdrEnabled.Value) continue;
+                        changeStationRange(station, galdrTableRange.Value);
+                        changeStationRangePerLevel(station, galdrTableRangeLvl.Value);
                     }
                 }
 
@@ -94,18 +163,20 @@ namespace LzD_StationsCustomRanges
 
             static void changeStationRange(CraftingStation station, float newRange)
             {
+                if (globalEnabled.Value) newRange = globalRange.Value;
                 if (station.m_rangeBuild == newRange || !rangeEnabled.Value) return;
 
                 station.m_rangeBuild = newRange;
-                Debug.Log($"Changing {station.m_name} range build to: {newRange}");
+                Log($"Changing {station.m_name} range build to: {newRange}");
             }
 
             static void changeStationRangePerLevel(CraftingStation station, float newRangePerLevel)
             {
+                if (globalEnabled.Value) newRangePerLevel = globalRangePerLevel.Value;
                 if (station.m_extraRangePerLevel == newRangePerLevel || !rangeLvlEnabled.Value) return;
 
                 station.m_extraRangePerLevel = newRangePerLevel;
-                Debug.Log($"Changing {station.m_name} extra range per level to: {newRangePerLevel}");
+                Log($"Changing {station.m_name} extra range per level to: {newRangePerLevel}");
             }
         }
 
@@ -114,10 +185,10 @@ namespace LzD_StationsCustomRanges
         {
             static void Postfix(ref float ___m_maxStationDistance)
             {
-                if (___m_maxStationDistance == extMaxDistance.Value || !extMaxDistEnabled.Value) return;
+                if (___m_maxStationDistance == extMaxDist.Value || !extMaxDistEnabled.Value || !modEnabled.Value) return;
 
-                ___m_maxStationDistance = extMaxDistance.Value;
-                Debug.Log($"Changing extension max distance to: {___m_maxStationDistance}");
+                ___m_maxStationDistance = extMaxDist.Value;
+                Log($"Changing extension max distance to: {___m_maxStationDistance}");
             }
         }
     }
