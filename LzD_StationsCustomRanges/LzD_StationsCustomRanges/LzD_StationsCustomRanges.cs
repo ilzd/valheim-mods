@@ -12,7 +12,7 @@ namespace LzD_StationsCustomRanges
     {
         public const string modID = "lzd_stationscustomranges";
         public const string modName = "LzD Stations Custom Ranges";
-        public const string modVersion = "1.0.0";
+        public const string modVersion = "1.1.13";
 
         private readonly Harmony harmony = new Harmony(modID);
 
