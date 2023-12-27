@@ -1,0 +1,12 @@
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_PingsCustomDurations\LzD_PingsCustomDurations\bin\Debug\LzD_PingsCustomDurations.dll
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_PingsCustomDurations\LzD_PingsCustomDurations\bin\Debug\LzD_PingsCustomDurations.pdb
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_PingsCustomDurations\LzD_PingsCustomDurations\bin\Debug\0Harmony.dll
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_PingsCustomDurations\LzD_PingsCustomDurations\bin\Debug\assembly_valheim.dll
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_PingsCustomDurations\LzD_PingsCustomDurations\bin\Debug\BepInEx.dll
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_PingsCustomDurations\LzD_PingsCustomDurations\bin\Debug\UnityEngine.CoreModule.dll
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_PingsCustomDurations\LzD_PingsCustomDurations\bin\Debug\UnityEngine.dll
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_PingsCustomDurations\LzD_PingsCustomDurations\obj\Debug\LzD_PingsCustomDurations.csproj.AssemblyReference.cache
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_PingsCustomDurations\LzD_PingsCustomDurations\obj\Debug\LzD_PingsCustomDurations.csproj.CoreCompileInputs.cache
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_PingsCustomDurations\LzD_PingsCustomDurations\obj\Debug\LzD_PingsCustomDurations.csproj.CopyComplete
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_PingsCustomDurations\LzD_PingsCustomDurations\obj\Debug\LzD_PingsCustomDurations.dll
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_PingsCustomDurations\LzD_PingsCustomDurations\obj\Debug\LzD_PingsCustomDurations.pdb
