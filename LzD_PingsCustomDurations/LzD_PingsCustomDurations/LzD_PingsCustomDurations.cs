@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using static Chat;
 
-namespace LzD_StationsCustomRanges
+namespace LzD_PingsCustomDurations
 {
     [BepInPlugin(modID, modName, modVersion)]
     [BepInProcess("valheim.exe")]
@@ -57,6 +57,8 @@ namespace LzD_StationsCustomRanges
         {
             static void Postfix(ref float ___m_worldTextTTL)
             {
+                if (!modEnabled.Value) return;
+
                 if (___m_worldTextTTL == pingsDuration.Value) return;
                 Log($"Changing worldTextTTl to {pingsDuration.Value}");
                 ___m_worldTextTTL = pingsDuration.Value;
@@ -68,6 +70,8 @@ namespace LzD_StationsCustomRanges
         {
             static void Postfix(float ___m_worldTextTTL, List<WorldTextInstance> ___m_worldTexts, float dt)
             {
+                if (!modEnabled.Value) return;
+
                 updateFrozenWordTextPositions(___m_worldTexts, dt);
 
                 bool clearPingsPressed = UnityInput.Current.GetKeyDown(clearPingKey.Value.MainKey);
