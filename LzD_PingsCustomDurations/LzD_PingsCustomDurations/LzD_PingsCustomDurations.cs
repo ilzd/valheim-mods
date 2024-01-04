@@ -14,7 +14,7 @@ namespace LzD_PingsCustomDurations
     {
         public const string modID = "lzd_pingscustomdurations";
         public const string modName = "LzD Pings Custom Durations";
-        public const string modVersion = "1.0.0";
+        public const string modVersion = "1.1.8";
 
         private readonly Harmony harmony = new Harmony(modID);
 
@@ -98,7 +98,7 @@ namespace LzD_PingsCustomDurations
             {
                 foreach (WorldTextInstance worldText in worldTexts)
                 {
-                    worldText.m_timer = -86.400f;
+                    worldText.m_timer = -86400f;
                 }
                 Log("Freezing pings and shouts.");
             }
