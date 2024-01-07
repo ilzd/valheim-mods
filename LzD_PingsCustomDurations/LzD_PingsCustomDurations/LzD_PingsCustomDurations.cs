@@ -14,7 +14,7 @@ namespace LzD_PingsCustomDurations
     {
         public const string modID = "lzd_pingscustomdurations";
         public const string modName = "LzD Pings Custom Durations";
-        public const string modVersion = "1.2.15";
+        public const string modVersion = "1.2.16";
 
         private readonly Harmony harmony = new Harmony(modID);
 
