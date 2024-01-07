@@ -10,3 +10,4 @@ C:\Users\ianlo\Documents\code\valheim-mods\LzD_PingsCustomDurations\LzD_PingsCus
 C:\Users\ianlo\Documents\code\valheim-mods\LzD_PingsCustomDurations\LzD_PingsCustomDurations\obj\Debug\LzD_PingsCustomDurations.csproj.CopyComplete
 C:\Users\ianlo\Documents\code\valheim-mods\LzD_PingsCustomDurations\LzD_PingsCustomDurations\obj\Debug\LzD_PingsCustomDurations.dll
 C:\Users\ianlo\Documents\code\valheim-mods\LzD_PingsCustomDurations\LzD_PingsCustomDurations\obj\Debug\LzD_PingsCustomDurations.pdb
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_PingsCustomDurations\LzD_PingsCustomDurations\bin\Debug\Unity.TextMeshPro.dll

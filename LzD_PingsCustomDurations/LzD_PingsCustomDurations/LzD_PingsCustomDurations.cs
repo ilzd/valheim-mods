@@ -14,7 +14,7 @@ namespace LzD_PingsCustomDurations
     {
         public const string modID = "lzd_pingscustomdurations";
         public const string modName = "LzD Pings Custom Durations";
-        public const string modVersion = "1.1.8";
+        public const string modVersion = "1.2.15";
 
         private readonly Harmony harmony = new Harmony(modID);
 
@@ -25,6 +25,7 @@ namespace LzD_PingsCustomDurations
         private static ConfigEntry<float> pingsDuration;
         private static ConfigEntry<KeyboardShortcut> freezePingKey;
         private static ConfigEntry<KeyboardShortcut> clearPingKey;
+        private static ConfigEntry<Color> frozenPingColor;
 
         void Awake()
         {
@@ -34,6 +35,7 @@ namespace LzD_PingsCustomDurations
             pingsDuration = Config.Bind<float>("2 - Pings and Shouts", "a. Duration", 15.0f, "Enable or disable logs completely");
             freezePingKey = Config.Bind<KeyboardShortcut>("2 - Pings and Shouts", "b. Freeze pings and shouts hotkey", new KeyboardShortcut(KeyCode.RightAlt), "Defines the key to freeze pings and shouts");
             clearPingKey = Config.Bind<KeyboardShortcut>("2 - Pings and Shouts", "b. Clear pings and shouts hotkey", new KeyboardShortcut(KeyCode.RightControl), "Defines the key to clear pings and shouts");
+            frozenPingColor = Config.Bind<Color>("2 - Pings and Shouts", "b. Frozen ping color", new Color(0.25f, 1f, 1f, 0.75f), "Defines the color of frozen pings");
 
             if (!modEnabled.Value) return;
 
@@ -99,6 +101,7 @@ namespace LzD_PingsCustomDurations
                 foreach (WorldTextInstance worldText in worldTexts)
                 {
                     worldText.m_timer = -86400f;
+                    worldText.m_textMeshField.color = frozenPingColor.Value;
                 }
                 Log("Freezing pings and shouts.");
             }
