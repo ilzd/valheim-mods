@@ -14,8 +14,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,18 +28,10 @@
               "RelativeDocumentMoniker": "LzD_StationsCustomRanges\\LzD_StationsCustomRanges.cs",
               "ToolTip": "C:\\Users\\ianlo\\Documents\\code\\valheim-mods\\LzD_StationsCustomRanges\\LzD_StationsCustomRanges\\LzD_StationsCustomRanges.cs",
               "RelativeToolTip": "LzD_StationsCustomRanges\\LzD_StationsCustomRanges.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwA4AAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-14T18:24:04.037Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{c3d4e5f6-a7b8-9012-cdef-ab3456789012}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             }
           ]
         }
