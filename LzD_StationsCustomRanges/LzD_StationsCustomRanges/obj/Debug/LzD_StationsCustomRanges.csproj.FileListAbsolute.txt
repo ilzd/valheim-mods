@@ -31,6 +31,6 @@ C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_Stations
 C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\bin\Debug\UnityEngine.dll
 C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\obj\Debug\LzD_StationsCustomRanges.csproj.AssemblyReference.cache
 C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\obj\Debug\LzD_StationsCustomRanges.csproj.CoreCompileInputs.cache
-C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\obj\Debug\LzD_StationsCustomRanges.csproj.CopyComplete
 C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\obj\Debug\LzD_StationsCustomRanges.dll
 C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\obj\Debug\LzD_StationsCustomRanges.pdb
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\obj\Debug\LzD_Stat.9CB0E452.Up2Date

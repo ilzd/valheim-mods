@@ -1,0 +1,12 @@
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\bin\Release\LzD_StationsCustomRanges.dll
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\bin\Release\LzD_StationsCustomRanges.pdb
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\bin\Release\0Harmony.dll
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\bin\Release\assembly_valheim.dll
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\bin\Release\BepInEx.dll
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\bin\Release\UnityEngine.CoreModule.dll
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\bin\Release\UnityEngine.dll
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\obj\Release\LzD_StationsCustomRanges.csproj.AssemblyReference.cache
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\obj\Release\LzD_StationsCustomRanges.csproj.CoreCompileInputs.cache
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\obj\Release\LzD_Stat.9CB0E452.Up2Date
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\obj\Release\LzD_StationsCustomRanges.dll
+C:\Users\ianlo\Documents\code\valheim-mods\LzD_StationsCustomRanges\LzD_StationsCustomRanges\obj\Release\LzD_StationsCustomRanges.pdb

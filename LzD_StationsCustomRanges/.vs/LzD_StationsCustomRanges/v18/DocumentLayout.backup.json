@@ -1,0 +1,45 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ianlo\\Documents\\code\\valheim-mods\\LzD_StationsCustomRanges\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4E5CA6F5-3AF3-4CAA-95B6-2F8932E2492E}|LzD_StationsCustomRanges\\LzD_StationsCustomRanges.csproj|c:\\users\\ianlo\\documents\\code\\valheim-mods\\lzd_stationscustomranges\\lzd_stationscustomranges\\lzd_stationscustomranges.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E5CA6F5-3AF3-4CAA-95B6-2F8932E2492E}|LzD_StationsCustomRanges\\LzD_StationsCustomRanges.csproj|solutionrelative:lzd_stationscustomranges\\lzd_stationscustomranges.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LzD_StationsCustomRanges.cs",
+              "DocumentMoniker": "C:\\Users\\ianlo\\Documents\\code\\valheim-mods\\LzD_StationsCustomRanges\\LzD_StationsCustomRanges\\LzD_StationsCustomRanges.cs",
+              "RelativeDocumentMoniker": "LzD_StationsCustomRanges\\LzD_StationsCustomRanges.cs",
+              "ToolTip": "C:\\Users\\ianlo\\Documents\\code\\valheim-mods\\LzD_StationsCustomRanges\\LzD_StationsCustomRanges\\LzD_StationsCustomRanges.cs",
+              "RelativeToolTip": "LzD_StationsCustomRanges\\LzD_StationsCustomRanges.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-14T18:24:04.037Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{c3d4e5f6-a7b8-9012-cdef-ab3456789012}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
